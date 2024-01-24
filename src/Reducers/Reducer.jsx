@@ -1,10 +1,12 @@
 import React from 'react'
 
 export default function Reducer(state=[], action) {
-    console.log(action)
+    console.log(state)
     switch (action.type){
         case "GET_SONGS":
-            return [...action.payload]
+            return{ album: [...action.payload]}
+        case "SEARCH_SONGS":
+            return { artista:[...action.payload]}
         default:
             break;
     }

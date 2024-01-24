@@ -2,13 +2,10 @@ import { createStore, applyMiddleware, combineReducers} from "redux"
 import {thunk } from "redux-thunk"
 import Reducer from "../Reducers/Reducer"
 const initialState={
-    album : []
-    
+    album : [],
+    artista: []
 }
 
-const AllReducers = combineReducers({
-    album: Reducer,
-    
-})
 
-export const store = createStore(AllReducers,initialState,applyMiddleware(thunk))
+
+export const store = createStore(Reducer,initialState,applyMiddleware(thunk))

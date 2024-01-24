@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../Assets/FileCss/style.css"
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import logo from "../Assets/images/Spotify_Logo.png"
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchSongs } from '../Actions/getAllSongs';
 
 export default function NavbarComp() {
+
+    const [cerca, setcerca]= useState()
+
+    const dispatch = useDispatch()
+
+    const canzoniR = useSelector(state=> state.artista)
+
+    console.log(canzoniR)
   return (
     <>
         <div class="col-2">
@@ -49,7 +59,7 @@ export default function NavbarComp() {
                     </li>
                     <li>
                       <div className="input-group mt-3">
-                        <input
+                        <input onChange={(e)=>{setcerca(e.target.value)}}
                           type="text"
                           className="form-control mb-2"
                           id="searchField"
@@ -61,7 +71,7 @@ export default function NavbarComp() {
                           className="input-group-append "
                           id='stile'
                         >
-                          <button
+                          <button onClick={()=> dispatch(searchSongs(cerca))}
                             className="btn btn-outline-secondary btn-sm h-100"
                             type="button"
                             id="button-addon1"

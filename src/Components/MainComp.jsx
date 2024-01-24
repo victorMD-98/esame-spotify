@@ -3,7 +3,7 @@ import "../Assets/FileCss/style.css"
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import getAllSongs from '../Actions/getAllSongs';
+import {getAllSongs} from '../Actions/getAllSongs';
 export default function MainComp() {
 
     const album = useSelector(state => state.album)
