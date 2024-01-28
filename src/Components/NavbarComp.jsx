@@ -12,9 +12,6 @@ export default function NavbarComp() {
 
     const dispatch = useDispatch()
 
-    const canzoniR = useSelector(state=> state.artista)
-
-    console.log(canzoniR)
   return (
     <>
         <div class="col-2">
@@ -23,14 +20,14 @@ export default function NavbarComp() {
             id="sidebar"
           >
             <div className="nav-container">
-              <a className="navbar-brand" href="index.html">
+              <Link to="/" className="navbar-brand">
                 <img
                   src={logo}
                   alt="Spotify_Logo"
                   width="131"
                   height="40"
                 />
-              </a>
+              </Link>
               <button
                 className="navbar-toggler"
                 type="button"

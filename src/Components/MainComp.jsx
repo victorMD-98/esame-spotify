@@ -4,16 +4,26 @@ import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {getAllSongs} from '../Actions/getAllSongs';
+import SearchSong from './SearchSong';
+import Canzoni from './Canzoni';
+import {Container} from "react-bootstrap"
+
+
+
+
 export default function MainComp() {
 
     const album = useSelector(state => state.album)
+    console.log(album)
     const dispatch = useDispatch()
 
     useEffect(()=>{
         dispatch(getAllSongs())
     },[])
 
-    console.log(album)
+    const canzoniR = useSelector(state=> state.artista)
+    console.log(canzoniR)
+
   return (
     <>
           <div className="col-12 col-md-9 offset-md-3 mainPage">
@@ -25,9 +35,11 @@ export default function MainComp() {
               <Link >NEW RELEASES</Link>
               <Link >DISCOVER</Link>
             </div>
-          </div>
-            
-        
+            {canzoniR && <> <div><h2 className='text-white'>Ricerca</h2></div>
+              <Container className='d-flex flex-wrap'> {canzoniR.slice(0,8).map(e => <SearchSong key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />) }</Container> </>}
+            <div><h2 className='text-white'>Canzoni</h2></div>
+              <Container className='d-flex flex-wrap'> {album.slice(0,8).map(e => <Canzoni key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />) }</Container>
+          </div >
         </div>
     </>
   )
