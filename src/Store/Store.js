@@ -1,16 +1,8 @@
-import { createStore, applyMiddleware, combineReducers} from "redux"
-import {thunk } from "redux-thunk"
-import Reducer from "../Reducers/Reducer"
-import RicercaC from "../Reducers/RicercaC"
-const initialState={
-    album : [],
-    artista: []
-}
+import { configureStore } from "@reduxjs/toolkit";
+import songsReducer from "../slice/getSongsSlice"
 
-const bigReducers = combineReducers({
-    artista: RicercaC,
-    album: Reducer
+export default configureStore({
+    reducer: {
+        songs : songsReducer
+    }
 })
-
-
-export const store = createStore(bigReducers,initialState,applyMiddleware(thunk))

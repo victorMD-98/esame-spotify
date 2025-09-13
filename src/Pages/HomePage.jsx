@@ -5,8 +5,8 @@ import MainComp from '../Components/MainComp'
 export default function HomePage() {
   return (
     <>
-        <div class="container-fluid">
-            <div class="row">
+        <div className="container-fluid">
+            <div className="row">
                 <NavbarComp/>
                 <MainComp/>
             </div>

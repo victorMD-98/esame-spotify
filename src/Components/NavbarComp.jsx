@@ -3,18 +3,14 @@ import "../Assets/FileCss/style.css"
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import logo from "../Assets/images/Spotify_Logo.png"
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { searchSongs } from '../Actions/getAllSongs';
 
 export default function NavbarComp() {
 
     const [cerca, setcerca]= useState()
 
-    const dispatch = useDispatch()
-
   return (
     <>
-        <div class="col-2">
+        <div className="col-2">
           <nav
             className="navbar navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between"
             id="sidebar"
@@ -44,7 +40,7 @@ export default function NavbarComp() {
                   <ul>
                     <li>
                     <Link to="/" className="nav-item nav-link">
-                    <i class="bi bi-house-door-fill"></i>  Home
+                    <i className="bi bi-house-door-fill"></i>  Home
                         
                     </Link>  
                     </li>
@@ -68,7 +64,7 @@ export default function NavbarComp() {
                           className="input-group-append "
                           id='stile'
                         >
-                          <button onClick={()=> dispatch(searchSongs(cerca))}
+                          <button 
                             className="btn btn-outline-secondary btn-sm h-100"
                             type="button"
                             id="button-addon1"

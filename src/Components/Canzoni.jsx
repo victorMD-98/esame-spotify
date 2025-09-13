@@ -10,22 +10,20 @@ export default function Canzoni({titolo , artista, img}) {
 
   return (
     <>
-                    <div class="col-3 text-center" >
+            <div className="col-3 text-center" >
                 <Link>
-                    <img class="img-fluid" src={img} alt="1" />
+                      <img className="img-fluid" src={img} alt="1" />
                 </Link>
-            <p>
-              <Link>
-              Album: {titolo}
-              </Link>
-              <br />
-              <Link>
-               Artist: {artista}     
-              </Link>
-            </p>
-          </div>
-              
-          
+                <p>
+                  <Link>
+                    Album: {titolo}
+                  </Link>
+                  <br />
+                  <Link>
+                    Artist: {artista}     
+                  </Link>
+               </p>
+           </div>
     </>
   )
 }
