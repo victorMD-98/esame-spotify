@@ -3,9 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Album from './Album';
-import {Container} from "react-bootstrap"
 import { fetchSongs } from '../slice/getSongsSlice';
-import SearchSong from './SearchSong';
 import Player from './player';
 
 
@@ -44,16 +42,31 @@ function canzoni(){
       });
       } 
   }
-  function prova(){
+  function album(){
     return (
-      ""
+            Object.entries(songs).map(([key, value]) => {
+              return (
+                      <>
+                        <div>
+                          <h3>{key}</h3>
+                          <div className='album'>
+                            {value.slice(0,4).map(e => <Album key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />)} 
+                          </div>
+                        </div>
+                      </>
+              ) 
+            }) 
     )
   }
 
-  function prova2(){
+  function albumRicerca(){
     return <>
-              <div><h2 className='text-white'>ricerca</h2></div>
-              <Container className='d-flex flex-wrap'> {searchSongs.songs.map(e => <Album key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />) }</Container>
+              <div>
+                <h3>Ricerca</h3>
+                <div className='album'>
+                  {searchSongs.songs.map(e => <Album key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />)} 
+                </div>
+              </div>
            </>
   }
 
@@ -70,22 +83,7 @@ function canzoni(){
             </ul>
         </div>
         <div>
-          {
-            Object.entries(songs).map(([key, value]) => {
-              return (
-                      <>
-                        <div>
-                          <h3>{key}</h3>
-                          <div className='album'>
-                            {value.slice(0,4).map(e => <Album key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />)} 
-                          </div>
-                        </div>
-                      </>
-              ) 
-            })
-          }
-            <h3></h3>
-            
+            { searchSongs.songs.length > 0 ? albumRicerca() : album() }
         </div>
     </>
   )
