@@ -1,69 +1,90 @@
-import React, { useEffect, useState } from 'react'
-import "../Assets/FileCss/style.css"
+import { useEffect, useState } from 'react'
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Canzoni from './Canzoni';
+import Album from './Album';
 import {Container} from "react-bootstrap"
-import axios from 'axios';
 import { fetchSongs } from '../slice/getSongsSlice';
 import SearchSong from './SearchSong';
+import Player from './player';
+
+
 
 export default function MainComp() {
-  
+  const elementiUl = ["TRENDING", "PODCAST", "MOODS AND GENRES", "NEW RELEASES", "DISCOVER" ];
   const [songs, setSongs] = useState({
-    rock: [],
-    pop: [],
-    hiphop: []
+    Rock: [],
+    Pop: [],
+    Hiphop: []
   });
-  const stateFetchSongs = useSelector(state => state.songs);
+
   const dispatch = useDispatch();
+
+  const stateFetchSongs = useSelector(state => state.songs);
+  const searchSongs = useSelector(state => state.searchSongs);
 
   useEffect(() => {
     dispatch( fetchSongs()); 
   },[])
 
-  function canzoni(){
+  useEffect(() => {
+    canzoni();
+  }, [stateFetchSongs]);
+
+function canzoni(){
       if(stateFetchSongs.status === "succeeded") {
       stateFetchSongs.songs.forEach(element => {
       setSongs((prevSong) => 
          ({
-          rock: [...prevSong.rock, element[Math.floor(Math.random() * element.length)]],
-          pop: [...prevSong.pop, element[Math.floor(Math.random() * element.length)]],
-          hiphop: [...prevSong.hiphop, element[Math.floor(Math.random() * element.length)]]
+          Rock: [...prevSong.Rock, element[Math.floor(Math.random() * element.length)]],
+          Pop: [...prevSong.Pop, element[Math.floor(Math.random() * element.length)]],
+          Hiphop: [...prevSong.Hiphop, element[Math.floor(Math.random() * element.length)]]
         })
        )
       });
       } 
   }
+  function prova(){
+    return (
+      ""
+    )
+  }
 
-  useEffect(() => {
-    canzoni();
-  }, [stateFetchSongs])
+  function prova2(){
+    return <>
+              <div><h2 className='text-white'>ricerca</h2></div>
+              <Container className='d-flex flex-wrap'> {searchSongs.songs.map(e => <Album key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />) }</Container>
+           </>
+  }
 
-  console.log(songs);
-
-  console.log(stateFetchSongs);
   return (
     <>
-          <div className="col-12 col-md-9 offset-md-3 mainPage">
-           <div className="row mb-3">
-            <div className="col-9 col-lg-11 mainLinks d-none d-md-flex">
-              <Link >TRENDING</Link>
-              <Link >PODCAST</Link>
-              <Link >MOODS AND GENRES</Link>
-              <Link >NEW RELEASES</Link>
-              <Link >DISCOVER</Link>
-            </div>
-            {/* {songs.rock && <> <div><h2 className='text-white'>Ricerca</h2></div>
-              <Container className='d-flex flex-wrap'> {songs.rock.slice(0,8).map(e => <SearchSong key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />) }</Container> </>} */}
-            <div><h2 className='text-white'>Rock Classic</h2></div>
-              <Container className='d-flex flex-wrap'> {songs.rock.slice(0,4).map(e => <Canzoni key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />) }</Container>
-              <div><h2 className='text-white'>Pop Culture</h2></div>
-              <Container className='d-flex flex-wrap'> {songs.pop.slice(0,4).map(e => <Canzoni key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />) }</Container>
-              <div><h2 className='text-white'>HipHop</h2></div>
-              <Container className='d-flex flex-wrap'> {songs.hiphop.slice(0,4).map(e => <Canzoni key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />) }</Container>
-            </div >
+        <div>
+            <ul>
+                {
+                  elementiUl.map((e, index) => {
+                    return <li key={index}> <Link className='linkMain' > {e} </Link> </li> 
+                    }
+                  )
+                }
+            </ul>
+        </div>
+        <div>
+          {
+            Object.entries(songs).map(([key, value]) => {
+              return (
+                      <>
+                        <div>
+                          <h3>{key}</h3>
+                          <div className='album'>
+                            {value.slice(0,4).map(e => <Album key={e.id} img={e.album.cover_medium} titolo={e.album.title} artista={e.artist.name} />)} 
+                          </div>
+                        </div>
+                      </>
+              ) 
+            })
+          }
+            <h3></h3>
             
         </div>
     </>

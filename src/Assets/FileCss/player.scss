@@ -1,0 +1,17 @@
+
+.img {
+    width: 25px;
+    height: 20px;
+    margin: 2rem 1rem;
+}
+
+.riga{
+    width: 35rem;
+    border: 2px solid white;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.img:hover, .riga:hover{
+    cursor: pointer;
+}

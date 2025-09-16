@@ -1,16 +1,16 @@
-import React from 'react'
+import "../Assets/FileCss/style.scss"
 import NavbarComp from '../Components/NavbarComp'
 import MainComp from '../Components/MainComp'
 
 export default function HomePage() {
   return (
-    <>
-        <div className="container-fluid">
-            <div className="row">
-                <NavbarComp/>
-                <MainComp/>
-            </div>
-        </div>
+    <> 
+        <header> 
+            <NavbarComp/>
+        </header>
+        <main>
+            <MainComp/>
+        </main>
     </>
   )
 }

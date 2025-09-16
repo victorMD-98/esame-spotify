@@ -27,7 +27,7 @@ const songsSlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchSongs.pending, (state, action) => {
+        builder.addCase(fetchSongs.pending, (state) => {
             state.status = "loading";
         })
         .addCase(fetchSongs.rejected, (state, action) => {
