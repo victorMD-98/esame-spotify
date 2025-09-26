@@ -1,0 +1,81 @@
+@import "./mixin.scss";
+
+.mainHome{
+  width: 100%;
+  margin-left: 217px;
+  height: 100%;
+  padding-bottom:84px ;
+}
+
+.linkMain{
+  text-decoration: none;
+  color: rgb(122, 121, 121);
+  font-size: small;
+  font-weight: 700;
+  margin: 0 10px;
+}
+
+.linkMain:hover{
+  color: white;
+  
+}
+
+.mainHome > div:first-child > ul{
+  @include mainLinksUl
+}
+
+.mainHome > div:first-child{
+  width: 70%;
+  margin: auto;
+}
+
+.contenitoreAlbum{
+  width: 70%;
+  margin: auto;
+  padding-bottom: 84px;
+}
+
+.album{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+}
+
+.linkAlbum{
+  color: white;
+  text-decoration: none;
+}
+
+.linkAlbum:hover{
+  color: rgb(122, 121, 121);
+}
+
+.card_album{
+  width: 12rem;
+}
+
+.imgAlbum{
+  width: 10rem;
+}
+
+.imgAlbum > img{
+  object-fit: cover;
+  width: 12rem;
+  height: auto;
+}
+
+.imgAlbum > img:hover{
+  filter: brightness(0.5);
+}
+
+.mainHome > .contenitoreAlbum > div > h3{
+  color: white;
+}
+
+.albumRicerca{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 90%;
+}

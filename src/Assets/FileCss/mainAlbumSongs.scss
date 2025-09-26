@@ -1,0 +1,70 @@
+@import "./mixin.scss";
+
+.mainAlbumSongs {
+    margin-left: 217px;
+    width: 100%;
+}
+
+.mainAlbumSongs > div:first-child > div:last-child > div:first-child{
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+.mainAlbumSongs > div:first-child > div:last-child > div:first-child > img{
+    width: 150px;
+    height: 150px;
+}
+
+.mainAlbumSongs > div:first-child > div:last-child > div:first-child > p{
+    color: white;
+    text-align: center;
+    width: 150px;
+}
+
+.mainAlbumSongs > div:first-child > div:last-child > div:first-child > button{
+    border-radius: 30px;
+    width: 150px;
+    height: 50px;
+    font-size: medium;
+    font-weight: 600;
+    background-color: #218838;
+    color: white;
+    border: 1px solid #218838;
+}
+
+.canzone{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    color: white;
+    padding: 10px;
+}
+
+.canzone:hover{
+    background-color: black;
+    cursor: pointer;
+}
+
+.mainAlbumSongs > div:last-child{
+    width: 100%;
+}
+
+.mainAlbumSongs > div:first-child > div > ul{
+    @include mainLinksUl
+}
+
+.mainAlbumSongs > div:first-child{
+    width: 70%;
+    margin: auto;
+}
+
+.mainAlbumSongs > div:first-child > div:last-child{
+    display: flex;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.mainAlbumSongs > div:first-child > div:last-child > div:last-child{
+    width: 100%;
+}

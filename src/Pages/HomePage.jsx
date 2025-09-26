@@ -1,6 +1,7 @@
-import "../Assets/FileCss/style.scss"
+
 import NavbarComp from '../Components/NavbarComp'
 import MainComp from '../Components/MainComp'
+import Player from "../Components/player"
 
 export default function HomePage() {
   return (
@@ -8,9 +9,10 @@ export default function HomePage() {
         <header> 
             <NavbarComp/>
         </header>
-        <main>
+        <main className='mainHome'>
             <MainComp/>
         </main>
+        <Player/>
     </>
   )
 }

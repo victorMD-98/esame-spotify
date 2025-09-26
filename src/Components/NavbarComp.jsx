@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchSong } from '../slice/getSearchSong';
 import { reset } from '../slice/getSearchSong';
+import "../Assets/FileCss/header.scss"
 
 export default function NavbarComp() {
 
@@ -30,11 +31,11 @@ export default function NavbarComp() {
       <nav>
          <div>
             <img src="/images/Spotify_Logo.png" alt="" />
-            <Link className='link_nav'>
-                <i class="bi bi-house-door-fill"></i> Home
+            <Link to={"/"} className='link_nav'>
+                <i className="bi bi-house-door-fill"></i> Home
             </Link>
             <Link className='link_nav'>
-                <i class="bi bi-book-fill"></i> Your Library
+                <i className="bi bi-book-fill"></i> Your Library
             </Link>
             <input onChange={ricerca} type="text" placeholder='Cerca'/>
          </div>
