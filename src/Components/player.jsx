@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAudio } from "../slice/riproduzioneAudioSlice";
 import { setIndex } from "../slice/riproduzioneAudioSlice";
+import { add_song } from "../slice/myLibrarySlice";
 
 export default function Player(){
     const [playPause, setPlayPause] = useState(true);
@@ -18,6 +19,8 @@ export default function Player(){
     const [percentualeVolume, setPercentualeVolume] = useState(50);
     const [hover, setHover] = useState(false);
     const [autoPlay, setAutoPLay] = useState(false);
+    const library = useSelector(state => state.myLibrary)
+    console.log(library);
 
     useEffect(() => {
         modificaVolume(audio)
@@ -122,8 +125,24 @@ export default function Player(){
         })
     }
 
+    function like(){
+        const song = {
+            name: audioURL.nome,
+            url: audioURL.url,
+            img: audioURL.img
+        }
+
+        dispatch(add_song(song));
+    }
+
     return (
             <div className='bg-dark player d-flex justify-content-center align-items-center'>
+                <div className="d-flex align-items-center playerInfo">
+                    <img src={audioURL.img} className="m-0" alt="" />
+                    <div>
+                      <p className="text-white fs-6" >{audioURL.nome}</p>  
+                    </div>
+                </div>
                 <i className="bi bi-shuffle"></i>
                 <i onClick={() => {previous()}} className="bi bi-arrow-left-circle-fill"></i>
                 {playPause ? <i className="bi bi-play-circle-fill" onClick={ () => play()} ></i> : <i onClick={ () => pause()} className="bi bi-pause-circle-fill"></i> } 
@@ -138,7 +157,9 @@ export default function Player(){
                     </div>
                     <div style={{width: percentualeVolume + "%"}} id="progressBar"></div>   
                 </div>
-                
+                <div>
+                    <i onClick={() => like()} className="bi bi-heart"></i>
+                </div>
             </div>
     )
                 

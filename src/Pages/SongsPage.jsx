@@ -7,20 +7,28 @@ import { useParams } from "react-router-dom";
 import { fetchAlbumSongs } from "../slice/getAlbumSongs";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { setIndex } from "../slice/riproduzioneAudioSlice";
+import { setImage, setIndex, setNome } from "../slice/riproduzioneAudioSlice";
 
 export default function SongsPage(){
     
     const dispatch = useDispatch();
     const params = useParams();
     const albumSongs = useSelector(state => state.albumSongs);
-    //console.log(albumSongs);
+    console.log(albumSongs);
     //console.log(params);
 
     useEffect(() => {
         dispatch(fetchAlbumSongs(params.id));
         dispatch(setIndex(parseInt(params.i)));
-    },[])     
+    },[])  
+    
+    useEffect(() => {
+        if(albumSongs.songs.length > 0){
+           dispatch(setImage(albumSongs.songs[0].album.cover));
+           dispatch(setNome(albumSongs.songs[0].title_short)); 
+        }
+        
+    },[albumSongs.songs]);
     
     return (
         <>
@@ -38,7 +46,7 @@ export default function SongsPage(){
                         </div>
                         <div>
                             {
-                                albumSongs.songs.map((song, index) => <AlbumSong key={index} indice = {index} audioUrl = {song.preview} title={song.title_short} duration={song.duration} />)
+                                albumSongs.songs.map((song, index) => <AlbumSong key={index} indice = {index} audioUrl = {song.preview} img={song.album.cover} title={song.title_short} duration={song.duration} />)
                             }
                         </div>
                   </div>  

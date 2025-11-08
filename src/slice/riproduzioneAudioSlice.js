@@ -16,11 +16,19 @@ const audioSlice = createSlice({
         url: null,
         status: "",
         error: null,
-        index: 0
+        index: 0,
+        img: "",
+        nome: ""
     },
     reducers: {
         setIndex(state, action){
             state.index = action.payload;
+        },
+        setImage(state, action){
+            state.img = action.payload
+        },
+        setNome(state, action){
+            state.nome = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -39,5 +47,5 @@ const audioSlice = createSlice({
 });
 
 const {reducer, actions} = audioSlice;
-export const {setIndex} = actions;
+export const {setIndex, setImage, setNome} = actions;
 export default reducer;

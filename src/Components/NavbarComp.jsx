@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import "bootstrap-icons/font/bootstrap-icons.min.css";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchSong } from '../slice/getSearchSong';
 import { reset } from '../slice/getSearchSong';
@@ -8,6 +8,7 @@ import "../Assets/FileCss/header.scss"
 
 export default function NavbarComp() {
 
+    const location = useLocation();
     const [cerca, setcerca]= useState("")
     const dispatch = useDispatch();
 
@@ -37,7 +38,7 @@ export default function NavbarComp() {
             <Link className='link_nav'>
                 <i className="bi bi-book-fill"></i> Your Library
             </Link>
-            <input onChange={ricerca} type="text" placeholder='Cerca'/>
+            <input style={{display: location.pathname === "/" ? "block" : "none"}} onChange={ricerca} type="text" placeholder='Cerca'/>
          </div>
          <div>
            <button name='signUp'> Sign Up </button>

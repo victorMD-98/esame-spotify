@@ -93,3 +93,28 @@
     background: rgb(83, 230, 83);
     border-radius: 5px;
 }
+
+.playerInfo img{
+    width: 50px;
+    height: 50px;
+    
+}
+
+.playerInfo div{
+    width: 150px;
+    margin-left: 10px;
+    margin-right: 20px;
+    overflow: hidden;
+    height: 22px;
+    
+}
+
+.playerInfo div p{
+   margin: 0;
+   white-space: nowrap; 
+   transition: transform 2s ease;
+}
+
+.playerInfo div p:hover{
+    transform: translateX(-120%);
+}
